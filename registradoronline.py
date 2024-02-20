@@ -40,6 +40,9 @@ estudiantes = [
     {"apellido": "Villanueva Reyes", "nombre": "Juan Axel"},
 ]
 
+# Inicializar st.session_state si no está definido
+if "puntajes" not in st.session_state:
+    st.session_state.puntajes = [0] * len(estudiantes)
 
 # Definir la función para registrar puntajes
 def registrar_puntajes(fecha_actual, puntajes):
@@ -77,14 +80,15 @@ def main():
 
     # Crear la tabla de asistencia
     st.write("### Tabla de Puntajes")
-    puntajes = [0] * len(estudiantes)
     for i, estudiante in enumerate(estudiantes):
         apellido_nombre = f"{estudiante['apellido']} {estudiante['nombre']}"
-        puntajes[i] = st.number_input(f"{apellido_nombre}", value=0)
+        st.session_state.puntajes[i] = st.number_input(
+            f"{apellido_nombre}", value=st.session_state.puntajes[i]
+        )
 
     # Botón para registrar puntajes
     if st.button("Registrar Puntajes"):
-        nombre_archivo = registrar_puntajes(fecha_actual.strftime("%d_%m_%Y"), puntajes)
+        nombre_archivo = registrar_puntajes(fecha_actual.strftime("%d_%m_%Y"), st.session_state.puntajes)
         try:
             with open(nombre_archivo, "rb") as file:
                 data = file.read()
