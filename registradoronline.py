@@ -2,43 +2,16 @@ import streamlit as st
 import pandas as pd
 
 # Definir los datos de los estudiantes
-estudiantes = [
-    {"apellido": "Adauto Huaman", "nombre": "Isaac"},
-    {"apellido": "Alvarado Osorio", "nombre": "Alexander Oliver"},
-    {"apellido": "Alvarez Huaringa", "nombre": "Sandro Enrique"},
-    {"apellido": "Andia Fernandez", "nombre": "Diego Paolo"},
-    {"apellido": "Aymachoque Aymachoque", "nombre": "Luis Jairo"},
-    {"apellido": "Ballarta Ulloa", "nombre": "Natalia Paula"},
-    {"apellido": "Bravo Olano", "nombre": "Randy Piero"},
-    {"apellido": "Callupe Pardo", "nombre": "Yoselyn Patricia"},
-    {"apellido": "Carhuas Romero", "nombre": "Jhon Jesus"},
-    {"apellido": "Chávez Arifaela", "nombre": "Niels Mauro"},
-    {"apellido": "Del Rio Gutierrez", "nombre": "Jairo Kazuo"},
-    {"apellido": "Dionicio Achachagua", "nombre": "Cesar Alonso"},
-    {"apellido": "Farfan Esteban", "nombre": "Gabriel Martin"},
-    {"apellido": "Flores Dalia", "nombre": "Gerson Donato"},
-    {"apellido": "Flores Velarde", "nombre": "Roberto Carlos"},
-    {"apellido": "Leon Sanchez", "nombre": "Fransua Mijail"},
-    {"apellido": "Mallma Orihuela", "nombre": "Gherson Bryan"},
-    {"apellido": "Mallma Pardo", "nombre": "Telesforo"},
-    {"apellido": "Meza Alvino", "nombre": "Fabian Alessandro Moises"},
-    {"apellido": "Montes Lozano", "nombre": "Diego Martin"},
-    {"apellido": "Nuñez Poma", "nombre": "Robert Gianpierro Jesus"},
-    {"apellido": "Palacios Palacios", "nombre": "Rafael Enrique"},
-    {"apellido": "Palomino Valdivia", "nombre": "Erick Da Silva"},
-    {"apellido": "Quispe Mitma", "nombre": "Cesar Fernando"},
-    {"apellido": "Quispe Rojas", "nombre": "Alfredo Martin"},
-    {"apellido": "Quispe Tenorio", "nombre": "Ximena Lucia"},
-    {"apellido": "Ramirez Villaverde", "nombre": "Oscar Leonardo"},
-    {"apellido": "Rodriguez Inga", "nombre": "Fernando Frans"},
-    {"apellido": "Salirrosas Avila", "nombre": "Sebastian Jose"},
-    {"apellido": "Soto Cossio", "nombre": "Edwin Isaac"},
-    {"apellido": "Urbano Chocce", "nombre": "Yeison Stiven"},
-    {"apellido": "Valencia Grey", "nombre": "William Gerardo"},
-    {"apellido": "Valerio Contreras", "nombre": "Cristhian Jesus"},
-    {"apellido": "Velasquez Solis", "nombre": "Walter Antonio"},
-    {"apellido": "Villanueva Reyes", "nombre": "Juan Axel"},
-]
+estudiantes = []
+with open("SI605U.txt", "r") as file:
+    for line in file:
+        partes = line.strip().split(" ")
+        if len(partes) >= 3:
+            apellido1 = partes[0]
+            apellido2 = partes[1]
+            nombre = " ".join(partes[2:])
+            apellido = f"{apellido1} {apellido2}"
+            estudiantes.append({"apellido": apellido, "nombre": nombre})
 
 # Inicializar st.session_state si no está definido
 if "puntajes" not in st.session_state:
