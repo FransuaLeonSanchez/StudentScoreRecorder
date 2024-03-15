@@ -46,7 +46,7 @@ def registrar_puntajes(fecha_actual, puntajes):
 
 # Crear la aplicación Streamlit
 def main():
-    st.title("Registrador de Puntos SI605U Arquitectura Empresarial")
+    st.title("Puntos Ciencia de datos y seguridad de la información")
 
     # Cuadro desplegable para seleccionar fecha
     fecha_actual = st.date_input("Selecciona la fecha", pd.Timestamp.today())
